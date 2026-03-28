@@ -1,6 +1,6 @@
 # ReaConvert
 
-ReaConvert is a C++ library for adding new projects file formats to Reaper. It provides one half of the implementation for a Reaper SDK `projectimport` plugin.
+ReaConvert is a C++ library for adding new project file formats to Reaper. It provides one half of the implementation for a Reaper SDK `projectimport` plugin.
 
 ### Structure:
 * `ProjectInfo` struct - common representation of the media project, including clips, tracks, VSTs, markers, envelopes, routing etc.
@@ -13,8 +13,6 @@ ReaConvert is a C++ library for adding new projects file formats to Reaper. It p
 or
 
 `RppParser` -> `ProjectInfo` -> `YourProjectFormatWriter`
-
-## Installation
 
 Add ReaConvert as a git submodule in your project:
 
