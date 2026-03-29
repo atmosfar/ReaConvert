@@ -29,6 +29,11 @@ public:
     virtual ~ProjectParser() = default;
 
     virtual bool Parse(const std::string& filePath, ProjectInfo& project) = 0;
+
+    // Brief project format description, eg. "Reaper Project"
+    std::string formatDescription;
+    // Project format file extension, eg. "rpp"
+    std::string formatFileExtension;
 };
 
 } // namespace reaconv

@@ -29,6 +29,11 @@ public:
     virtual ~ProjectWriter() = default;
 
     virtual bool Write(const ProjectInfo& project, const std::string& filePath) = 0;
+
+    // Brief project format description, eg. "Reaper Project"
+    std::string formatDescription;
+    // Project format file extension, eg. "rpp"
+    std::string formatFileExtension;
 };
 
 } // namespace reaconv
