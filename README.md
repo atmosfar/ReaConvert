@@ -1,11 +1,11 @@
 # ReaConvert
 
-ReaConvert is a library for parsing and writing Reaper projects. It provides one half of the implementation for extensions supporting new project formats in Reaper.
+ReaConvert is a C++ library for adding new project file formats to Reaper. It provides one half of the implementation for a Reaper SDK `projectimport` plugin.
 
 ### Structure:
-* ProjectInfo struct - common representation of the media project, including clips, tracks, VSTs, markers, envelopes, routing etc.
-* RppWriter class - takes a ProjectInfo instance and generates a Reaper project, which is then imported
-* RppParser class - populates a ProjectInfo instance from the project currently open in Reaper
+* `ProjectInfo` struct - common representation of the media project, including clips, tracks, VSTs, markers, envelopes, routing etc.
+* `RppWriter` class - takes a ProjectInfo instance and generates a Reaper project, which is then imported.
+* `RppParser` class - populates a ProjectInfo instance from the project currently open in Reaper.
 
 ### Usage:
 `YourProjectFormatParser` -> `ProjectInfo` -> `RppWriter`
@@ -13,8 +13,6 @@ ReaConvert is a library for parsing and writing Reaper projects. It provides one
 or
 
 `RppParser` -> `ProjectInfo` -> `YourProjectFormatWriter`
-
-## Installation
 
 Add ReaConvert as a git submodule in your project:
 
