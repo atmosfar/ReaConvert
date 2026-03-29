@@ -25,8 +25,8 @@ namespace reaconv {
 
 class ProjectParser {
 public:
-    ProjectParser();
-    virtual ~ProjectParser();
+    ProjectParser() = default;
+    virtual ~ProjectParser() = default;
 
     virtual bool Parse(const std::string& filePath, ProjectInfo& project) = 0;
 };

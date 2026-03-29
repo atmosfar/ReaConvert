@@ -25,8 +25,8 @@ namespace reaconv {
 
 class ProjectWriter {
 public:
-    ProjectWriter();
-    virtual ~ProjectWriter();
+    ProjectWriter() = default;
+    virtual ~ProjectWriter() = default;
 
     virtual bool Write(const ProjectInfo& project, const std::string& filePath) = 0;
 };
