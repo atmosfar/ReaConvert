@@ -25,15 +25,20 @@ namespace reaconv {
 
 class ProjectWriter {
 public:
-    ProjectWriter() = default;
+    ProjectWriter(const std::string& desc, const std::string& ext)
+        : formatDescription(desc), formatFileExtension(ext) {}
     virtual ~ProjectWriter() = default;
 
-    virtual bool Write(const ProjectInfo& project, const std::string& filePath) = 0;
+    virtual bool Write(const ProjectInfo& project, const std::string& filePath)  = 0;
 
+    const std::string& GetFormatDescription() const { return formatDescription; }
+    const std::string& GetFormatFileExtension() const { return formatFileExtension; }
+
+private:
     // Brief project format description, eg. "Reaper Project"
-    std::string formatDescription;
+    const std::string formatDescription;
     // Project format file extension, eg. "rpp"
-    std::string formatFileExtension;
+    const std::string formatFileExtension;
 };
 
 } // namespace reaconv

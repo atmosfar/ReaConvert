@@ -25,15 +25,20 @@ namespace reaconv {
 
 class ProjectParser {
 public:
-    ProjectParser() = default;
+    ProjectParser(const std::string& desc, const std::string& ext)
+        : formatDescription(desc), formatFileExtension(ext) {}
     virtual ~ProjectParser() = default;
 
     virtual bool Parse(const std::string& filePath, ProjectInfo& project) = 0;
 
+    const std::string& GetFormatDescription() const { return formatDescription; }
+    const std::string& GetFormatFileExtension() const { return formatFileExtension; }
+
+private:
     // Brief project format description, eg. "Reaper Project"
-    std::string formatDescription;
+    const std::string formatDescription;
     // Project format file extension, eg. "rpp"
-    std::string formatFileExtension;
+    const std::string formatFileExtension;
 };
 
 } // namespace reaconv
