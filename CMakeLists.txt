@@ -4,15 +4,6 @@ project(ReaConvert VERSION 1.0.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Force macOS architecture when generating on Apple hosts.
-if(APPLE)
-  if(NOT DEFINED CMAKE_OSX_ARCHITECTURES OR CMAKE_OSX_ARCHITECTURES STREQUAL "")
-    # Prefer host processor (Rosetta terminal will report x86_64)
-    set(CMAKE_OSX_ARCHITECTURES "${CMAKE_HOST_SYSTEM_PROCESSOR}" CACHE STRING "" FORCE)
-    message(STATUS "Apple architecture set from HOST_SYSTEM_PROCESSOR: ${CMAKE_HOST_SYSTEM_PROCESSOR}")
-  endif()
-endif()
-
 # SWELL configuration for plugins
 add_definitions(-DSWELL_PROVIDED_BY_APP)
 
