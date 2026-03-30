@@ -29,6 +29,7 @@ endif()
 set(REACONVERT_SOURCES
     src/RppParser.cpp
     src/RppWriter.cpp
+    src/ReaConvert_LoadAPI.cpp
 )
 
 # Add platform-specific WDL sources
@@ -57,7 +58,7 @@ endif()
 add_library(ReaConvert STATIC ${REACONVERT_SOURCES})
 
 # REAPER API minimal mode
-target_compile_definitions(ReaConvert PUBLIC
+target_compile_definitions(ReaConvert PRIVATE
     REAPERAPI_MINIMAL
     REAPERAPI_WANT_GetAppVersion
     REAPERAPI_WANT_ShowConsoleMsg
@@ -150,43 +151,3 @@ target_include_directories(ReaConvert PUBLIC
     $<INSTALL_INTERFACE:include/common>
 )
 
-# Install targets
-install(TARGETS ReaConvert
-    EXPORT ReaConvertTargets
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-    RUNTIME DESTINATION bin
-    INCLUDES DESTINATION include
-)
-
-install(DIRECTORY include/
-    DESTINATION include
-    FILES_MATCHING PATTERN "*.h"
-)
-
-# Export package configuration
-include(CMakePackageConfigHelpers)
-
-configure_package_config_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ReaConvertConfig.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/ReaConvertConfig.cmake
-    INSTALL_DESTINATION lib/cmake/ReaConvert
-)
-
-write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/ReaConvertConfigVersion.cmake
-    VERSION ${PROJECT_VERSION}
-    COMPATIBILITY SameMajorVersion
-)
-
-install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/ReaConvertConfig.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/ReaConvertConfigVersion.cmake
-    DESTINATION lib/cmake/ReaConvert
-)
-
-install(EXPORT ReaConvertTargets
-    FILE ReaConvertTargets.cmake
-    NAMESPACE ReaConvert::
-    DESTINATION lib/cmake/ReaConvert
-)
