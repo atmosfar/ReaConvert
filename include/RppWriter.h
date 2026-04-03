@@ -19,6 +19,7 @@
 #define RPP_WRITER_H
 
 #include <string>
+
 #include "common/ProjectInfo.h"
 #include "reaper_plugin.h"
 

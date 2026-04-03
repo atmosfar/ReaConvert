@@ -15,12 +15,14 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "RppParser.h"
-#include "common/ReaConvUtils.h"
 #include <algorithm>
-#include <vector>
+#include <functional>
 #include <stdint.h>
 #include <sstream>
+#include <vector>
+
+#include "RppParser.h"
+#include "common/ReaConvUtils.h"
 
 namespace reaconv {
 
@@ -319,6 +321,7 @@ MediaClip RppParser::ExtractClipData(
       hubClip.fadeOutDuration = GetMediaItemInfo_Value(item, "D_FADEOUTLEN");
       hubClip.fadeInShape = (int)GetMediaItemInfo_Value(item, "C_FADEINSHAPE");
       hubClip.fadeOutShape = (int)GetMediaItemInfo_Value(item, "C_FADEOUTSHAPE");
+      hubClip.volume = (float)GetMediaItemInfo_Value(item, "D_VOL");
       hubClip.mute = (GetMediaItemInfo_Value(item, "B_MUTE") != 0);
       hubClip.loop = (GetMediaItemInfo_Value(item, "B_LOOPSRC") != 0);
       hubClip.group = (int)GetMediaItemInfo_Value(item, "I_GROUPID");
@@ -329,7 +332,6 @@ MediaClip RppParser::ExtractClipData(
     if (GetMediaItemTakeInfo_Value) {
       hubClip.sourceOffsetSamples = (long long)(
           GetMediaItemTakeInfo_Value(take, "D_STARTOFFS") * sampleRate);
-      hubClip.volume = (float)GetMediaItemTakeInfo_Value(take, "D_VOL");
     }
     if (GetNumTakeMarkers && GetTakeMarker) {
       int numTM = GetNumTakeMarkers(take);

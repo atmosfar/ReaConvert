@@ -15,12 +15,13 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "RppWriter.h"
-#include "common/ReaConvUtils.h"
 #include <cstdio>
 #include <cstdarg>
 #include <vector>
 #include <algorithm>
+
+#include "RppWriter.h"
+#include "common/ReaConvUtils.h"
 
 namespace reaconv {
 

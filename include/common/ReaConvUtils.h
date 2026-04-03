@@ -18,10 +18,11 @@
 #ifndef REACONV_UTILS_H
 #define REACONV_UTILS_H
 
+#include <algorithm>
+#include <cmath>
 #include <string>
 #include <vector>
-#include <cmath>
-#include <algorithm>
+
 #include "reaper_plugin_functions.h"
 #include "ProjectInfo.h"
 
