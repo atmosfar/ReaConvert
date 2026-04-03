@@ -317,8 +317,10 @@ MediaClip RppParser::ExtractClipData(
       double len = GetMediaItemInfo_Value(item, "D_LENGTH");
       hubClip.startPositionSamples = (long long)(pos * sampleRate);
       hubClip.endPositionSamples = (long long)((pos + len) * sampleRate);
-      hubClip.fadeInDuration = GetMediaItemInfo_Value(item, "D_FADEINLEN");
-      hubClip.fadeOutDuration = GetMediaItemInfo_Value(item, "D_FADEOUTLEN");
+      double autoIn = GetMediaItemInfo_Value(item, "D_FADEINLEN_AUTO");
+      hubClip.fadeInDuration = (autoIn >= 0) ? autoIn : GetMediaItemInfo_Value(item, "D_FADEINLEN");
+      double autoOut = GetMediaItemInfo_Value(item, "D_FADEOUTLEN_AUTO");
+      hubClip.fadeOutDuration = (autoOut >= 0) ? autoOut : GetMediaItemInfo_Value(item, "D_FADEOUTLEN");
       hubClip.fadeInShape = (int)GetMediaItemInfo_Value(item, "C_FADEINSHAPE");
       hubClip.fadeOutShape = (int)GetMediaItemInfo_Value(item, "C_FADEOUTSHAPE");
       hubClip.volume = (float)GetMediaItemInfo_Value(item, "D_VOL");
