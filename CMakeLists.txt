@@ -26,11 +26,8 @@ set(REACONVERT_SOURCES
 # Add platform-specific WDL sources
 if(APPLE)
     list(APPEND REACONVERT_SOURCES
-        extern/WDL/WDL/win32_utf8.c
         extern/WDL/WDL/swell/swell-modstub.mm
     )
-    # ensure C++ compilation for win32_utf8.c
-    set_source_files_properties(extern/WDL/WDL/win32_utf8.c PROPERTIES LANGUAGE CXX)
 elseif(WIN32)
     list(APPEND REACONVERT_SOURCES
         extern/WDL/WDL/win32_utf8.c
@@ -38,11 +35,8 @@ elseif(WIN32)
 elseif(UNIX)
     # Linux/Unix
     list(APPEND REACONVERT_SOURCES
-        extern/WDL/WDL/win32_utf8.c
         extern/WDL/WDL/swell/swell-modstub-generic.cpp
     )
-    # ensure C++ compilation for win32_utf8.c
-    set_source_files_properties(extern/WDL/WDL/win32_utf8.c PROPERTIES LANGUAGE CXX)
 endif()
 
 # Create static library

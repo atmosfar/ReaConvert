@@ -18,9 +18,10 @@
 #ifndef RPP_PARSER_H
 #define RPP_PARSER_H
 
+#include <map>
+
 #include "common/ProjectInfo.h"
 #include "reaper_plugin_functions.h"
-#include <map>
 
 namespace reaconv {
 

@@ -15,12 +15,13 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "RppWriter.h"
-#include "common/ReaConvUtils.h"
 #include <cstdio>
 #include <cstdarg>
 #include <vector>
 #include <algorithm>
+
+#include "RppWriter.h"
+#include "common/ReaConvUtils.h"
 
 namespace reaconv {
 
@@ -357,10 +358,10 @@ void RppWriter::WriteTracks(const ProjectInfo& project, ProjectStateContext* gen
             genstate->AddLine("      FADEIN %d %.6f 0.0", clip.fadeInShape, clip.fadeInDuration);
             genstate->AddLine("      FADEOUT %d %.6f 0.0", clip.fadeOutShape, clip.fadeOutDuration);
             float clip_v = clip.volume;
-            bool hasClipVol = false;
-            for(auto& e : clip.envelopes) if(e.name == "volume") hasClipVol = true;
-            if(hasClipVol) clip_v = 1.0f;
-            genstate->AddLine("      VOLPAN %.6f 0.0 1.0 -1.0", clip_v);
+            bool hasClipVolEnv = false;
+            for(auto& e : clip.envelopes) if(e.name == "volume") hasClipVolEnv = true;
+            if(hasClipVolEnv) clip_v = 1.0f;
+            genstate->AddLine("      VOLPAN %.6f 0.0 %.6f -1.0", clip_v, clip.gain);
             genstate->AddLine("      LOOP %d", clip.loop ? 1 : 0);
             genstate->AddLine("      NAME \"%s\"", clip.name.c_str());
             

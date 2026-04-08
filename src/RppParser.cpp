@@ -15,12 +15,14 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "RppParser.h"
-#include "common/ReaConvUtils.h"
 #include <algorithm>
-#include <vector>
+#include <functional>
 #include <stdint.h>
 #include <sstream>
+#include <vector>
+
+#include "RppParser.h"
+#include "common/ReaConvUtils.h"
 
 namespace reaconv {
 
@@ -315,10 +317,13 @@ MediaClip RppParser::ExtractClipData(
       double len = GetMediaItemInfo_Value(item, "D_LENGTH");
       hubClip.startPositionSamples = (long long)(pos * sampleRate);
       hubClip.endPositionSamples = (long long)((pos + len) * sampleRate);
-      hubClip.fadeInDuration = GetMediaItemInfo_Value(item, "D_FADEINLEN");
-      hubClip.fadeOutDuration = GetMediaItemInfo_Value(item, "D_FADEOUTLEN");
+      double autoIn = GetMediaItemInfo_Value(item, "D_FADEINLEN_AUTO");
+      hubClip.fadeInDuration = (autoIn > 0) ? autoIn : GetMediaItemInfo_Value(item, "D_FADEINLEN");
+      double autoOut = GetMediaItemInfo_Value(item, "D_FADEOUTLEN_AUTO");
+      hubClip.fadeOutDuration = (autoOut > 0) ? autoOut : GetMediaItemInfo_Value(item, "D_FADEOUTLEN");
       hubClip.fadeInShape = (int)GetMediaItemInfo_Value(item, "C_FADEINSHAPE");
       hubClip.fadeOutShape = (int)GetMediaItemInfo_Value(item, "C_FADEOUTSHAPE");
+      hubClip.volume = (float)GetMediaItemInfo_Value(item, "D_VOL");
       hubClip.mute = (GetMediaItemInfo_Value(item, "B_MUTE") != 0);
       hubClip.loop = (GetMediaItemInfo_Value(item, "B_LOOPSRC") != 0);
       hubClip.group = (int)GetMediaItemInfo_Value(item, "I_GROUPID");
@@ -327,9 +332,9 @@ MediaClip RppParser::ExtractClipData(
           GetRGBFromNative((int)GetMediaItemInfo_Value(item, "I_CUSTOMCOLOR"));
     }
     if (GetMediaItemTakeInfo_Value) {
+      hubClip.gain = (float)GetMediaItemTakeInfo_Value(take, "D_VOL");
       hubClip.sourceOffsetSamples = (long long)(
           GetMediaItemTakeInfo_Value(take, "D_STARTOFFS") * sampleRate);
-      hubClip.volume = (float)GetMediaItemTakeInfo_Value(take, "D_VOL");
     }
     if (GetNumTakeMarkers && GetTakeMarker) {
       int numTM = GetNumTakeMarkers(take);

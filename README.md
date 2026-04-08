@@ -8,11 +8,11 @@ ReaConvert is a C++ library for adding new project file formats to Reaper. It pr
 * `RppParser` class - populates a ProjectInfo instance from the project currently open in Reaper.
 
 ### Usage:
-`YourProjectFormatParser` -> `ProjectInfo` -> `RppWriter`
+`ProjectParser` -> `ProjectInfo` -> `RppWriter`
 
 or
 
-`RppParser` -> `ProjectInfo` -> `YourProjectFormatWriter`
+`RppParser` -> `ProjectInfo` -> `ProjectWriter`
 
 Add ReaConvert as a git submodule in your project:
 
