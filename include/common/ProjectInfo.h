@@ -101,6 +101,7 @@ struct MediaClip {
     long long endPositionSamples;
     long long sourceOffsetSamples;
     float volume;
+    float pan;
     float gain;
     int group;
     bool mute;

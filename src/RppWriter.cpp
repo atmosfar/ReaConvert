@@ -361,7 +361,7 @@ void RppWriter::WriteTracks(const ProjectInfo& project, ProjectStateContext* gen
             bool hasClipVolEnv = false;
             for(auto& e : clip.envelopes) if(e.name == "volume") hasClipVolEnv = true;
             if(hasClipVolEnv) clip_v = 1.0f;
-            genstate->AddLine("      VOLPAN %.6f 0.0 %.6f -1.0", clip_v, clip.gain);
+            genstate->AddLine("      VOLPAN %.6f %.6f %.6f -1.0", clip_v, clip.pan, clip.gain);
             genstate->AddLine("      LOOP %d", clip.loop ? 1 : 0);
             genstate->AddLine("      NAME \"%s\"", clip.name.c_str());
             
