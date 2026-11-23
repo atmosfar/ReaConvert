@@ -109,7 +109,7 @@ struct MediaClip {
     ColorRGB color;
 
     MediaClip() : startPositionSamples(0), endPositionSamples(0), sourceOffsetSamples(0), 
-                  volume(1.0f), gain(1.0f), group(-1), mute(false), loop(true), fadeInDuration(0.0), 
+                  volume(1.0f), pan(0.0f), gain(1.0f), group(-1), mute(false), loop(true), fadeInDuration(0.0), 
                   fadeInShape(0), fadeOutDuration(0.0), fadeOutShape(0) {}
     
     // Fades (in seconds)

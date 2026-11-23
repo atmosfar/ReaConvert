@@ -332,6 +332,9 @@ MediaClip RppParser::ExtractClipData(
           GetRGBFromNative((int)GetMediaItemInfo_Value(item, "I_CUSTOMCOLOR"));
     }
     if (GetMediaItemTakeInfo_Value) {
+      // REAPER's item pan control edits the active take's pan, so this is the
+      // value that the VOLPAN line written by RppWriter expects
+      hubClip.pan = (float)GetMediaItemTakeInfo_Value(take, "D_PAN");
       hubClip.gain = (float)GetMediaItemTakeInfo_Value(take, "D_VOL");
       hubClip.sourceOffsetSamples = (long long)(
           GetMediaItemTakeInfo_Value(take, "D_STARTOFFS") * sampleRate);
