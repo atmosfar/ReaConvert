@@ -126,6 +126,18 @@ set_target_properties(ReaConvert PROPERTIES
     POSITION_INDEPENDENT_CODE ON
 )
 
+# Examples are only built when ReaConvert is the top-level project, so that
+# consumers using it as a submodule/dependency are not affected.
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+    set(REACONVERT_EXAMPLES_DEFAULT ON)
+else()
+    set(REACONVERT_EXAMPLES_DEFAULT OFF)
+endif()
+option(REACONVERT_BUILD_EXAMPLES "Build the example REAPER extensions" ${REACONVERT_EXAMPLES_DEFAULT})
+if(REACONVERT_BUILD_EXAMPLES)
+    add_subdirectory(examples/json_timeline)
+endif()
+
 # Export include directories for consumers
 target_include_directories(ReaConvert PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

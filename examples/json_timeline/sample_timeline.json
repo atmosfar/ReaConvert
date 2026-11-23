@@ -1,0 +1,85 @@
+{
+  "format": "reaconv-timeline",
+  "version": 1,
+  "name": "Example timeline",
+  "sampleRate": 44100,
+  "tempo": 96.0,
+  "timeSignature": [4, 4],
+
+  "markers": [
+    { "name": "Intro", "time": 0.0, "length": 2.0, "color": "#8888ff" },
+    { "name": "Drop", "time": 2.0 },
+    { "name": "Outro", "time": 4.0, "length": 3.0 }
+  ],
+
+  "tracks": [
+    {
+      "name": "Low end",
+      "color": "#ff9922",
+      "volume": 0.9,
+      "pan": 0.0,
+      "clips": [
+        {
+          "name": "tone A x2",
+          "file": "media/tone_a.wav",
+          "start": 0.0,
+          "length": 2.0,
+          "loop": true,
+          "fadeIn": 0.005,
+          "fadeOut": 0.05,
+          "pan": -0.25
+        },
+        {
+          "name": "tone B",
+          "file": "media/tone_b.wav",
+          "start": 2.5,
+          "length": 1.5,
+          "offset": 0.25,
+          "volume": 0.7,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "name": "High end",
+      "color": "#22cc88",
+      "pan": 0.4,
+      "clips": [
+        {
+          "name": "tone C",
+          "file": "media/tone_c.wav",
+          "start": 1.0,
+          "length": 0.75,
+          "gain": 1.4
+        },
+        {
+          "name": "tone C again",
+          "file": "media/tone_c.wav",
+          "start": 3.5,
+          "length": 0.75,
+          "color": "#ff3333"
+        },
+        {
+          "name": "muted tone A",
+          "file": "media/tone_a.wav",
+          "start": 5.0,
+          "length": 1.0,
+          "mute": true
+        }
+      ]
+    },
+    {
+      "name": "Bed",
+      "clips": [
+        {
+          "name": "long loop",
+          "file": "media/tone_b.wav",
+          "start": 0.0,
+          "length": 6.0,
+          "loop": true,
+          "volume": 0.35
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# build output
+build/
+cmake-build-*/
+install/
+
+# REAPER artefacts created when a project is opened
+*.reapeaks
+media/peaks/
+*.rpp-bak

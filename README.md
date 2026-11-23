@@ -21,6 +21,13 @@ git submodule add https://github.com/atmosfar/ReaConvert.git ReaConvert
 git submodule update --init --recursive
 ```
 
+## Examples
+
+`examples/json_timeline` is a complete, small extension that uses ReaConvert in
+both directions: it imports a JSON timeline description into REAPER and exports
+the open project back to that same JSON format. See
+[examples/json_timeline/README.md](examples/json_timeline/README.md).
+
 ## License
 
 GPL v3 - See LICENSE file for details.
